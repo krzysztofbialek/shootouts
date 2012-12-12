@@ -1,7 +1,11 @@
 class Game
 
-  cattr_reader :games
+  cattr_accessor :games
 
   @@games = {}
+
+  def initialize
+    @@games.merge!(@@games.size => self)
+  end
 
 end
