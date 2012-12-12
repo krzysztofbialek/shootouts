@@ -18,7 +18,7 @@ class GameTest < Test::Unit::TestCase
   should "create game with default starting values" do
     game = Game.new
     assert_equal nil, game.winner
-    assert ['shot', 'save'].include?(game.start_with), game.start_with
+    assert ['shot', 'save'].include?(game.current_action), game.current_action
     assert_equal Game.games.size - 1, game.num
   end
 
@@ -28,4 +28,11 @@ class GameTest < Test::Unit::TestCase
     assert_equal 1, game.shots.size  
   end
 
+  should 'declare winner after 10 shots' do
+    game = Game.new
+    10.times do
+      game.create_action(2,2, game.current_action)
+    end
+    assert ['client', 'server'].include?(game.winner), "expected winner to be client or server but was #{game.winner}"
+  end
 end

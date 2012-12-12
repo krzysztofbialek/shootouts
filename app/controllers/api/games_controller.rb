@@ -13,9 +13,13 @@ class Api::GamesController < ApplicationController
 
   def shot
     game = Game.find(params[:id])
-    game.create_action(params[:x], params[:y], game.current_action)
-    
-    render :json => game.to_json
+    if game.winner 
+      render :json => {:message => "this game has been won by #{game.winner}"} and return
+    else
+      game.create_action(params[:x], params[:y], game.current_action)
+   
+      render :json => game.to_json
+    end
   end
 
 end
