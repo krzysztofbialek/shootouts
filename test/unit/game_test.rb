@@ -4,7 +4,7 @@ class GameTest < Test::Unit::TestCase
 
  should "games hash should be empty at start of server" do
   
-   assert @@games.empty? 
+   assert Game.games.empty? 
   
  end 
 
