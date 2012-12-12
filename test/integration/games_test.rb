@@ -14,5 +14,14 @@ class GamesTest < ActionController::IntegrationTest
     assert_equal game.num, new_game['num']
     assert_equal game.start_with, new_game['start_with']
   end
+
+  should 'repsond to show action' do
+    game = Game.new
+    get api_game_url(game.num), :format => :json
+    new_game = JSON.parse(response.body)
+    assert_equal game.num, new_game['num']
+    assert_equal game.start_with, new_game['start_with']
+  end
+
   
 end

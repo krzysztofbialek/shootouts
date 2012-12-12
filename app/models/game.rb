@@ -14,6 +14,10 @@ class Game
     @@games.merge!(@@games.size => self)
   end
 
+  def self.find(param)
+    game = @@games[param.to_i]
+  end
+
   def as_json(options={})
     { :num => self.num,
       :start_with => self.start_with
