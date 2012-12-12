@@ -22,4 +22,10 @@ class GameTest < Test::Unit::TestCase
     assert_equal Game.games.size - 1, game.num
   end
 
+  should 'create a shot for itself' do
+    game = Game.new
+    game.create_action(2,2,'shot')
+    assert_equal 1, game.shots.size  
+  end
+
 end

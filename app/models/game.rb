@@ -18,6 +18,11 @@ class Game
     game = @@games[param.to_i]
   end
 
+  def create_action(x, y, type)
+    shot = Action.new(x, y, type)
+    shots.merge!(shots.size => shot)
+  end
+
   def as_json(options={})
     { :num => self.num,
       :start_with => self.start_with
