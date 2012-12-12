@@ -11,4 +11,11 @@ class Api::GamesController < ApplicationController
     render :json => game.to_json
   end
 
+  def shot
+    game = Game.find(params[:id])
+    game.create_action(params[:x], params[:y], game.current_action)
+    
+    render :json => game.to_json
+  end
+
 end

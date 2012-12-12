@@ -2,7 +2,7 @@ Shotouts::Application.routes.draw do
 
   namespace :api do
     resources :games do
-      resources :shots
+      post :shot
     end
   end
 

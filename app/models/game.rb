@@ -2,13 +2,13 @@ class Game
   require 'json'
 
   cattr_accessor :games
-  attr_accessor :winner, :num, :shots, :start_with
+  attr_accessor :winner, :num, :shots, :current_action
 
   @@games = {}
 
   def initialize
     @num  = @@games.size
-    @start_with = rand(2) == 1? 'shot' : 'save'
+    @current_action = rand(2) == 1? 'shot' : 'save'
     @shots = {}
     
     @@games.merge!(@@games.size => self)
@@ -25,7 +25,8 @@ class Game
 
   def as_json(options={})
     { :num => self.num,
-      :start_with => self.start_with
+      :current_action => self.current_action,
+      :shots => self.shots
     }
   end
 
